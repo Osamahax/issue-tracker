@@ -8,15 +8,17 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { createIssueSchema } from "@/app/validationSchemas";
+import { z } from "zod"
 
-interface issueForm {
-  title: string;
-  description: string;
-}
+type IssueForm = z.infer<typeof createIssueSchema>
 const newIssuePage = () => {
   const [error, setError] = useState("");
   const router = useRouter();
-  const { register, control, handleSubmit } = useForm<issueForm>();
+  const { register, control, handleSubmit, formState:{ errors } } = useForm<IssueForm>({
+    resolver:zodResolver(createIssueSchema)
+  });
   return (
     <div className="max-w-xl">
       {error && (<Alert className="mb-4 bg-red-50">
@@ -38,6 +40,7 @@ const newIssuePage = () => {
         })}
       >
         <Input placeholder="Title" {...register("title")} />
+        {errors.title && <p className="text-red-600">{errors.title.message}</p>}
         <Controller
           name="description"
           control={control}
@@ -45,6 +48,7 @@ const newIssuePage = () => {
             <SimpleMDE placeholder="Description" {...field} />
           )}
         />
+        {errors.description && <p className="text-red-600">{errors.description.message}</p>}
         <Button className="bg-violet-600 hover:bg-violet-800">
           Submit New Issue
         </Button>
