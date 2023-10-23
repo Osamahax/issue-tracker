@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import SimpleMDE from "react-simplemde-editor";
+import SimpleMDE from 'react-simplemde-editor'
 import "easymde/dist/easymde.min.css";
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
@@ -12,16 +12,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createIssueSchema } from "@/app/validationSchemas";
 import { z } from "zod"
 import Spinner from "@/components/ui/Spinner";
-import delay from "delay";
+// const SimpleMDE = dynamic(()=> import('react-simplemde-editor'),{ssr:false})
 type IssueForm = z.infer<typeof createIssueSchema>
-const newIssuePage = async () => {
+const newIssuePage = () => {
   const [error, setError] = useState("");
   const [isSubmitting, setSubmitting] = useState(false)
   const router = useRouter();
   const { register, control, handleSubmit, formState:{ errors } } = useForm<IssueForm>({
     resolver:zodResolver(createIssueSchema)
   });
-  await delay(2000);
   return (
     <div className="max-w-xl">
       {error && (<Alert className="mb-4 bg-red-50">
