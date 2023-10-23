@@ -28,8 +28,8 @@ const IssuesPage = async () => {
         <TableHeader className="bg-gray-200/80">
           <TableRow>
             <TableHead>Issue</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>CreatedAt</TableHead>
+            <TableHead className="hidden md:table-cell">Status</TableHead>
+            <TableHead className="hidden md:table-cell">CreatedAt</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>

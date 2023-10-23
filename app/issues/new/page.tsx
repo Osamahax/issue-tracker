@@ -12,15 +12,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createIssueSchema } from "@/app/validationSchemas";
 import { z } from "zod"
 import Spinner from "@/components/ui/Spinner";
-
+import delay from "delay";
 type IssueForm = z.infer<typeof createIssueSchema>
-const newIssuePage = () => {
+const newIssuePage = async () => {
   const [error, setError] = useState("");
   const [isSubmitting, setSubmitting] = useState(false)
   const router = useRouter();
   const { register, control, handleSubmit, formState:{ errors } } = useForm<IssueForm>({
     resolver:zodResolver(createIssueSchema)
   });
+  await delay(2000);
   return (
     <div className="max-w-xl">
       {error && (<Alert className="mb-4 bg-red-50">
