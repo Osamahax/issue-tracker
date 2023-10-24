@@ -13,7 +13,7 @@ import { issueSchema } from "@/app/validationSchemas";
 import { z } from "zod";
 import Spinner from "@/components/ui/Spinner";
 import { Issue } from "@prisma/client";
-import dynamic from "next/dynamic";
+// import dynamic from "next/dynamic";
 
 // const SimpleMDE = dynamic(()=> import('react-simplemde-editor'),{ssr:false})
 type IssueFormData = z.infer<typeof issueSchema>;
@@ -48,6 +48,7 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
             else 
               await axios.post("/api/issues", data);
             router.push("/issues");
+            router.refresh()
           } catch (error) {
             setSubmitting(false);
             setError("An Unexpected Error occured.");
@@ -81,5 +82,6 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
     </div>
   );
 };
+
 
 export default IssueForm;
