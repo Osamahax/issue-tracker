@@ -7,7 +7,7 @@ const EditIssueButton = ({issueId}:{issueId:number}) => {
   return (
     <Button className="bg-violet-600 hover:bg-violet-700 gap-2">
       <RxPencil2 />
-      <Link href={`/issue/${issueId}/edit`}>Edit Issue</Link>
+      <Link href={`/issues/${issueId}/edit`}>Edit Issue</Link>
     </Button>
   );
 };
