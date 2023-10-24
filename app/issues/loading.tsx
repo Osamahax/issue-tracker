@@ -1,4 +1,3 @@
-import IssueStatusBadge from '@/components/ui/IssueStatusBadge'
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
