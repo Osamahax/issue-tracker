@@ -4,8 +4,9 @@ import { Inter } from "next/font/google";
 import NavBar from "./NavBar";
 import { Container } from "postcss";
 import Conatiner from "@/components/Conatiner";
+import Hydrate from "@/components/Hydrate";
 
-const inter = Inter({ subsets: ["latin"]});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,12 +21,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NavBar />
-        <main className="p-5">
-          <Conatiner>
-            {children}
-          </Conatiner>
-        </main>
+        <Hydrate>
+          <NavBar />
+          <main className="p-5">
+            <Conatiner>{children}</Conatiner>
+          </main>
+        </Hydrate>
       </body>
     </html>
   );
